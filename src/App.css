@@ -7,6 +7,19 @@
   pointer-events: none;
 }
 
+.container{
+width: 220px;
+height: 310px;
+  }
+
+  .card{
+    width: 220px;
+    height: 310px;
+
+    background-image: url('testview.jpg');
+    background-size: cover;
+      }
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
