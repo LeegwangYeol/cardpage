@@ -3,7 +3,7 @@ name: Jules Daily Check
 on:
   schedule:
     # INFO : GitHub evaluates cron in UTC, not KST
-    - cron: '35 21 * * *'
+    - cron: '35'
   workflow_dispatch:
 
 permissions:
@@ -31,7 +31,22 @@ jobs:
               answer you chose under "Assumptions" in the pull request body, then continue.
             - When several candidates qualify, any one is fine. Pick one and go;
               the next daily run picks up the others.
+            - Earlier daily runs may already be fixing something. Run `git fetch origin` and
+              `git branch -r` first; skip any issue that an existing fix branch already addresses.
             - If you cannot settle on a safe fix, finish without changes and without a pull request.
+
+            ## This repository
+            Create React App project (`src/App.js`, `react-scripts`) with one test (`src/App.test.js`) and static assets in `public/`.
+
+            Setup and checks:
+            - `npm ci`, `CI=true npm test`, `npm run build`
+            - `react-scripts` is old: if `npm ci` fails on this Node version, use `npm install --legacy-peer-deps` for the check, but do not upgrade packages unless the upgrade itself is the defect.
+
+            Focus:
+            - Rendering logic in `src/App.js` and the existing test. The project is tiny: most runs should end with no changes.
+
+            Leave alone:
+            - The `package.json` scripts, `public/` assets.
 
             ## Goal
             Find ONE real defect and fix it in a small, safe pull request.
@@ -67,6 +82,8 @@ jobs:
             - How it was verified (build/test command and result)
             - Not fixed (problems that need a decision), or "none"
             - Assumptions (questions you would have asked, with the answer you chose), or "none"
+            - Prompt feedback (instructions above that were wrong, missing or unclear for this
+              repository, e.g. a build command that does not exist), or "none"
 
             Reminder: do not ask questions. Decide, finish, and open the pull request or stop.
         run: |
