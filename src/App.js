@@ -10,8 +10,8 @@ function rotate(){
 
 function App() {
   return (
-<div class ='container'>
-  <div class = 'card'></div>
+<div className ='container'>
+  <div className = 'card'></div>
 </div>
 
   );
